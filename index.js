@@ -1,27 +1,17 @@
-// содежимое index.js
-/*const http = require('http')
-const port = 3000
-const requestHandler = (request, response) => {
-    console.log(request.url)
-    response.end('Hello Node.js Server!')
-}
-const server = http.createServer(requestHandler)
-server.listen(port, (err) => {
-    if (err) {
-        return console.log('something bad happened', err)
+'use strict';
+const fs = require('fs');
+
+console.time("Конвертация названия файла заняла:");
+
+const convertedFile = fileName => {
+    let fileContent = fs.readFileSync(fileName, 'utf8'); // Read file synchrony
+    let currentNameFile = '';
+    for (let i = 0; i < fileName.length; i++) {
+        if (fileName[i] !== ' ' || fileName[i - 1] !== ' ') {
+            currentNameFile += fileName[i];
+        }
     }
-    console.log(`server is listening on ${port}`)
-})
-*/
-const express = require('express')
-const app = express()
-const port = 3000
-app.get('/', (request, response) => {
-response.send('Hello from Express!')
-})
-app.listen(port, (err) => {
-    if (err) {
-        return console.log('something bad happened', err)
-    }
-    console.log(`server is listening on ${port}`)
-})
+    return fs.writeFileSync(`converted_${currentNameFile}.txt`, `${fileContent}`,'utf8'); // Create file synchrony
+};
+convertedFile('Hello   world!    NodeJS     RULES!.txt');
+console.timeEnd('Конвертация названия файла заняла:');

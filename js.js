@@ -47,18 +47,3 @@ const viewTableAsObject = (sampleTable) => {
     return objectForTable;
 };
 console.log(viewTableAsObject('.table'));
-
-
-// Task #3.
-//
-
-
-
-
-
-
-
-
-
-
-
